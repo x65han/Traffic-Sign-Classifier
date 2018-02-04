@@ -64,12 +64,12 @@ def visualize_data(X_data, y_data, title):
         axs[i].axis('off')
         axs[i].imshow(image)
         axs[i].set_title(y_data[index])
-    plt.title(title)
+    fig.canvas.set_window_title(title)
     plt.show()
 
-visualize_data(X_train, y_train, "Training Sample")
-visualize_data(X_valid, y_valid, "Validation Sample")
-visualize_data(X_test, y_test, "Testing Sample")
+# visualize_data(X_train, y_train, "Training Sample")
+# visualize_data(X_valid, y_valid, "Validation Sample")
+# visualize_data(X_test, y_test, "Testing Sample")
 
 # histogram of label frequency
 # hist, bins = np.histogram(y_train, bins=n_classes)
@@ -88,7 +88,7 @@ X_train, y_train = shuffle(X_train, y_train)
 import tensorflow as tf
 from tensorflow.contrib.layers import flatten
 EPOCHS = 20
-BATCH_SIZE = 128
+BATCH_SIZE = 128 * 2
 
 # CNN
 def LeNet(x):
