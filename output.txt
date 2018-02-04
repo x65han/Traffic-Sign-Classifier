@@ -1,0 +1,81 @@
+Archive:  traffic-signs-data.zip
+  inflating: test.p                  
+  inflating: train.p                 
+  inflating: valid.p                 
+X_train: (34799, 32, 32, 3)
+y_train: (34799,)
+X_valid: (4410, 32, 32, 3)
+y_valid: (4410,)
+X_test: (12630, 32, 32, 3)
+y_test: (12630,)
+Sample input shape: (32, 32, 3)
+Sample output: 41
+Number of training examples = 34799
+Number of validation examples = 4410
+Number of testing examples = 12630
+Shape of image data = (32, 32, 3)
+Number of classes = 43
+Training...
+
+EPOCH 1...
+Validation Accuracy = 0.652
+
+EPOCH 2...
+Validation Accuracy = 0.743
+
+EPOCH 3...
+Validation Accuracy = 0.781
+
+EPOCH 4...
+Validation Accuracy = 0.796
+
+EPOCH 5...
+Validation Accuracy = 0.827
+
+EPOCH 6...
+Validation Accuracy = 0.830
+
+EPOCH 7...
+Validation Accuracy = 0.836
+
+EPOCH 8...
+Validation Accuracy = 0.844
+
+EPOCH 9...
+Validation Accuracy = 0.861
+
+EPOCH 10...
+Validation Accuracy = 0.853
+
+EPOCH 11...
+Validation Accuracy = 0.873
+
+EPOCH 12...
+Validation Accuracy = 0.855
+
+EPOCH 13...
+Validation Accuracy = 0.850
+
+EPOCH 14...
+Validation Accuracy = 0.865
+
+EPOCH 15...
+Validation Accuracy = 0.866
+
+EPOCH 16...
+Validation Accuracy = 0.864
+
+EPOCH 17...
+Validation Accuracy = 0.866
+
+EPOCH 18...
+Validation Accuracy = 0.882
+
+EPOCH 19...
+Validation Accuracy = 0.881
+
+EPOCH 20...
+Validation Accuracy = 0.858
+
+Model saved
+Test Accuracy = 0.865
