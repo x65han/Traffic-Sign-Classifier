@@ -1,3 +1,7 @@
 .ipynb_checkpoints/
 data_sets/
 .DS_Store
+*.data*
+*.index
+*.meta
+checkpoint
