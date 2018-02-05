@@ -2,35 +2,22 @@
 import pickle
 
 data_directory = "./data_sets/"
-training_file = data_directory + "train.p"
-validation_file = data_directory + "valid.p"
-testing_file = data_directory + "test.p"
-
-with open(training_file, mode='rb') as f:
+with open(data_directory + "train.p", mode='rb') as f:
     train = pickle.load(f)
-with open(validation_file, mode='rb') as f:
-    valid = pickle.load(f) 
-with open(testing_file, mode='rb') as f:
+with open(data_directory + "test.p", mode='rb') as f:
     test = pickle.load(f)
     
 X_train, y_train = train['features'], train['labels']
-X_valid, y_valid = valid['features'], valid['labels']
 X_test,  y_test  = test['features'],  test['labels']
 
-# print data shapes
-print("X_train:", X_train.shape)
-print("y_train:", y_train.shape)
-assert(len(X_train) == len(y_train))
-print("X_valid:", X_valid.shape)
-print("y_valid:", y_valid.shape)
-assert(len(X_valid) == len(y_valid))
-print("X_test:", X_test.shape)
-print("y_test:", y_test.shape)
-assert(len(X_test) == len(y_test))
-print("Sample input shape:", X_train[0].shape)
-print("Sample output:", y_train[0])
+# Build Validation Set
+from sklearn.model_selection import train_test_split
+X_train, X_valid, y_train, y_valid = train_test_split(X_train, y_train, test_size=0.20, random_state=42)
 
 # Dataset Summary & Exploration
+assert(len(X_train) == len(y_train))
+assert(len(X_valid) == len(y_valid))
+assert(len(X_test) == len(y_test))
 import numpy as np
 # Number of training examples
 n_train = len(X_train)
@@ -53,7 +40,7 @@ print("Number of classes =", n_classes)
 import matplotlib.pyplot as plt
 import random
 
-def visualize_data(X_data, y_data, title):
+def visualize_data(X_data, y_data, title="No Title", gray_scale=False):
     fig, axs = plt.subplots(3, 5, figsize=(15, 6))
     fig.subplots_adjust(hspace = .2, wspace=.001)
     axs = axs.ravel()
@@ -62,33 +49,39 @@ def visualize_data(X_data, y_data, title):
         index = random.randint(0, len(X_data) - 1)
         image = X_data[index]
         axs[i].axis('off')
-        axs[i].imshow(image)
+        if gray_scale == True:
+            axs[i].imshow(image.squeeze(), cmap='gray')
+        else:
+            axs[i].imshow(image)
         axs[i].set_title(y_data[index])
     fig.canvas.set_window_title(title)
     plt.show()
 
-# visualize_data(X_train, y_train, "Training Sample")
-# visualize_data(X_valid, y_valid, "Validation Sample")
-# visualize_data(X_test, y_test, "Testing Sample")
+# visualize_data(X_train, y_train, title="Training Sample")
 
-# histogram of label frequency
-# hist, bins = np.histogram(y_train, bins=n_classes)
-# unique, counts = np.unique(y_train, return_counts=True)
-# output = dict(zip(unique, counts))
-# width = 0.7 * (bins[1] - bins[0])
-# bins = bins[1:]
-# plt.bar(bins, hist, align='center', width=width)
-# plt.show()
-
-# Preprocess Data
+# Pre-process Data
 from sklearn.utils import shuffle
+
+# Pre-process Data: shuffle data
 X_train, y_train = shuffle(X_train, y_train)
+
+# Pre-process Data: Normalization
+# X_train = (X_train - 128) / 128
+# X_test = (X_test - 128)  / 128
+
+# Pre-process Data: Grayscale
+X_train = np.sum(X_train / 3, axis=3, keepdims=True)
+X_test  = np.sum(X_test  / 3, axis=3, keepdims=True)
+X_valid = np.sum(X_valid / 3, axis=3, keepdims=True)
+
+# visualize_data(X_train, y_train, title="Pre-processed Sample", gray_scale=True)
 
 # Setup Tensorflow
 import tensorflow as tf
 from tensorflow.contrib.layers import flatten
 EPOCHS = 20
 rate = 0.001
+keep_prob = 1
 BATCH_SIZE = 128
 
 # CNN
@@ -98,12 +91,15 @@ def LeNet(x):
     sigma = 0.1
 
     # Layer 1: Convolutional. Input = 32x32x3. Output = 28x28x6.
-    conv1_W = tf.Variable(tf.truncated_normal(shape=(5, 5, 3, 6), mean=mu, stddev=sigma))
+    conv1_W = tf.Variable(tf.truncated_normal(shape=(5, 5, 1, 6), mean=mu, stddev=sigma))
     conv1_b = tf.Variable(tf.zeros(6))
     conv1 = tf.nn.conv2d(x, conv1_W, strides=[1, 1, 1, 1], padding='VALID') + conv1_b
 
     # Layer 1: Activation.
     conv1 = tf.nn.relu(conv1)
+
+    # Layer 1: Dropout
+    conv1 = tf.nn.dropout(conv1, keep_prob)
 
     # Layer 1: Pooling. Input = 28x28x6. Output = 14x14x6.
     conv1 = tf.nn.max_pool(conv1, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
@@ -116,23 +112,26 @@ def LeNet(x):
     # Layer 2: Activation.
     conv2 = tf.nn.relu(conv2)
 
+    # Layer 2: Dropout
+    conv2 = tf.nn.dropout(conv2, keep_prob)
+
     # Layer 2: Pooling. Input = 10x10x16. Output = 5x5x16
     conv2 = tf.nn.max_pool(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
 
     # Flatten Neural Network. Input = 5x5x16. Output = 400.
     conv2 = flatten(conv2)
 
-    # Layer 3: Fully Connected. Input = 400. Output = 43.
-    conv3_W = tf.Variable(tf.truncated_normal(shape=(400, 43), mean=mu, stddev=sigma))
-    conv3_b = tf.Variable(tf.zeros(43))
+    # Layer 3: Fully Connected. Input = 400. Output = n_classes.
+    conv3_W = tf.Variable(tf.truncated_normal(shape=(400, n_classes), mean=mu, stddev=sigma))
+    conv3_b = tf.Variable(tf.zeros(n_classes))
     logits = tf.matmul(conv2, conv3_W) + conv3_b
 
     return logits
 
 # Features and Labels
-x = tf.placeholder(tf.float32, (None, 32, 32, 3))
+x = tf.placeholder(tf.float32, (None, 32, 32, 1))
 y = tf.placeholder(tf.int32, (None))
-one_hot_y = tf.one_hot(y, 43)
+one_hot_y = tf.one_hot(y, n_classes)
 
 # Training Pipeline
 logits = LeNet(x)
@@ -164,20 +163,20 @@ with tf.Session() as sess:
     print("Training...")
     print()
     for i in range(EPOCHS):
-        X_train, y_train= shuffle(X_train, y_train)
+        X_train, y_train = shuffle(X_train, y_train)
         for offset in range(0, num_examples, BATCH_SIZE):
             end = offset + BATCH_SIZE
             batch_x, batch_y = X_train[offset:end], y_train[offset:end]
             sess.run(training_operation, feed_dict={x: batch_x, y: batch_y})
         
         validation_accuracy = evaluate(X_valid, y_valid)
-        print("EPOCH {}...".format(i + 1))
+        print("EPOCH {}/{}:".format(i + 1, EPOCHS))
         print("Validation Accuracy = {:.3f}".format(validation_accuracy))
         print()
-    saver.save(sess, './traffic-sign-classifier')
+    saver.save(sess, './tf')
     print("Model saved")
 
-# Evaluate the Model
+# Test the Model
 with tf.Session() as sess:
     saver.restore(sess, tf.train.latest_checkpoint('.'))
     
