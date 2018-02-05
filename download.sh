@@ -5,7 +5,8 @@
 # define variables
 zip_file_name=traffic-signs-data.zip
 folder_name=data_sets
-url="https://d17h27t6h515a5.cloudfront.net/topher/2017/February/5898cd6f_traffic-signs-data/$zip_file_name"
+# url="https://d17h27t6h515a5.cloudfront.net/topher/2017/February/5898cd6f_traffic-signs-data/$zip_file_name"
+url="https://d17h27t6h515a5.cloudfront.net/topher/2016/November/581faac4_traffic-signs-data/$zip_file_name"
 
 # clean up directory
 rm *.p
