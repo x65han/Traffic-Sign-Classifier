@@ -18,64 +18,64 @@ Number of classes = 43
 Training...
 
 EPOCH 1...
-Validation Accuracy = 0.652
+Validation Accuracy = 0.279
 
 EPOCH 2...
-Validation Accuracy = 0.743
+Validation Accuracy = 0.691
 
 EPOCH 3...
-Validation Accuracy = 0.781
+Validation Accuracy = 0.778
 
 EPOCH 4...
-Validation Accuracy = 0.796
+Validation Accuracy = 0.820
 
 EPOCH 5...
-Validation Accuracy = 0.827
+Validation Accuracy = 0.832
 
 EPOCH 6...
-Validation Accuracy = 0.830
-
-EPOCH 7...
-Validation Accuracy = 0.836
-
-EPOCH 8...
 Validation Accuracy = 0.844
 
-EPOCH 9...
+EPOCH 7...
 Validation Accuracy = 0.861
 
-EPOCH 10...
-Validation Accuracy = 0.853
+EPOCH 8...
+Validation Accuracy = 0.866
 
-EPOCH 11...
+EPOCH 9...
+Validation Accuracy = 0.870
+
+EPOCH 10...
 Validation Accuracy = 0.873
 
+EPOCH 11...
+Validation Accuracy = 0.876
+
 EPOCH 12...
-Validation Accuracy = 0.855
+Validation Accuracy = 0.897
 
 EPOCH 13...
-Validation Accuracy = 0.850
+Validation Accuracy = 0.887
 
 EPOCH 14...
-Validation Accuracy = 0.865
+Validation Accuracy = 0.893
 
 EPOCH 15...
-Validation Accuracy = 0.866
+Validation Accuracy = 0.900
 
 EPOCH 16...
-Validation Accuracy = 0.864
+Validation Accuracy = 0.902
 
 EPOCH 17...
-Validation Accuracy = 0.866
+Validation Accuracy = 0.889
 
 EPOCH 18...
-Validation Accuracy = 0.882
+Validation Accuracy = 0.893
 
 EPOCH 19...
-Validation Accuracy = 0.881
+Validation Accuracy = 0.902
 
 EPOCH 20...
-Validation Accuracy = 0.858
+Validation Accuracy = 0.895
 
 Model saved
-Test Accuracy = 0.865
+Test Accuracy = 0.883

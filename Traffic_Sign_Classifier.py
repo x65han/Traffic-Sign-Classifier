@@ -88,7 +88,8 @@ X_train, y_train = shuffle(X_train, y_train)
 import tensorflow as tf
 from tensorflow.contrib.layers import flatten
 EPOCHS = 20
-BATCH_SIZE = 128 * 2
+rate = 0.001
+BATCH_SIZE = 128
 
 # CNN
 def LeNet(x):
@@ -119,28 +120,12 @@ def LeNet(x):
     conv2 = tf.nn.max_pool(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
 
     # Flatten Neural Network. Input = 5x5x16. Output = 400.
-    fc0 = flatten(conv2)
+    conv2 = flatten(conv2)
 
-    # Layer 3: Fully Connected. Input = 400. Output = 120.
-    fc1_W = tf.Variable(tf.truncated_normal(shape=(400, 120), mean=mu, stddev=sigma))
-    fc1_b = tf.Variable(tf.zeros(120))
-    fc1 = tf.matmul(fc0, fc1_W) + fc1_b
-
-    # Layer 3: Activation
-    fc1 = tf.nn.relu(fc1)
-
-    # Layer 4: Fully Connected. Input = 120. Output = 84.
-    fc2_W = tf.Variable(tf.truncated_normal(shape=(120, 84), mean=mu, stddev=sigma))
-    fc2_b = tf.Variable(tf.zeros(84))
-    fc2 = tf.matmul(fc1, fc2_W) + fc2_b
-
-    # Layer 4: Activation
-    fc2 = tf.nn.relu(fc2)
-
-    # Layer 5: Fully Connected. Input = 84. Output = 43
-    fc3_W = tf.Variable(tf.truncated_normal(shape=(84, 43), mean=mu, stddev=sigma))
-    fc3_b = tf.Variable(tf.zeros(43))
-    logits = tf.matmul(fc2, fc3_W) + fc3_b
+    # Layer 3: Fully Connected. Input = 400. Output = 43.
+    conv3_W = tf.Variable(tf.truncated_normal(shape=(400, 43), mean=mu, stddev=sigma))
+    conv3_b = tf.Variable(tf.zeros(43))
+    logits = tf.matmul(conv2, conv3_W) + conv3_b
 
     return logits
 
@@ -150,8 +135,6 @@ y = tf.placeholder(tf.int32, (None))
 one_hot_y = tf.one_hot(y, 43)
 
 # Training Pipeline
-rate = 0.001
-
 logits = LeNet(x)
 cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=one_hot_y, logits=logits)
 loss_operation = tf.reduce_mean(cross_entropy)
@@ -200,7 +183,3 @@ with tf.Session() as sess:
     
     test_accuracy = evaluate(X_test, y_test)
     print("Test Accuracy = {:.3f}".format(test_accuracy))
-
-
-    
-
