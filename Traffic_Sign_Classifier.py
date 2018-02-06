@@ -30,31 +30,49 @@ image_shape = X_train[0].shape
 # Number of unique labels
 n_classes = len(np.unique(y_train))
 
+print()
 print("Number of training examples =", n_train)
+print()
 print("Number of validation examples =", n_valid)
+print()
 print("Number of testing examples =", n_test)
+print()
 print("Shape of image data =", image_shape)
+print()
 print("Number of classes =", n_classes)
+print()
 
 # Visualize data
 import matplotlib.pyplot as plt
 import random
 
-def visualize_data(X_data, y_data, title="No Title", gray_scale=False):
+def labels_chart():
+    hist, bins = np.histogram(y_train, bins=n_classes)
+    plt.bar(bins[1:], hist)
+    plt.show()
+    
+labels_chart()
+
+def visualize_data(X_data, y_data, title="No Title", gray_scale=False, limit=16, isRand=True):
     fig, axs = plt.subplots(3, 5, figsize=(15, 6))
     fig.subplots_adjust(hspace = .2, wspace=.001)
+    fig.canvas.set_window_title(title)
     axs = axs.ravel()
-
+    
     for i in range(15):
-        index = random.randint(0, len(X_data) - 1)
-        image = X_data[index]
         axs[i].axis('off')
+
+    for i in range(limit - 1):
+        index = i
+        if isRand == True:
+            index = random.randint(0, len(X_data) - 1)
+        image = X_data[index]
         if gray_scale == True:
             axs[i].imshow(image.squeeze(), cmap='gray')
         else:
             axs[i].imshow(image)
         axs[i].set_title(y_data[index])
-    fig.canvas.set_window_title(title)
+
     plt.show()
 
 # visualize_data(X_train, y_train, title="Training Sample")
@@ -62,17 +80,20 @@ def visualize_data(X_data, y_data, title="No Title", gray_scale=False):
 # Pre-process Data
 from sklearn.utils import shuffle
 
-# Pre-process Data: shuffle data
-X_train, y_train = shuffle(X_train, y_train)
+def preprocess_data(X_data, y_data):
+    # Pre-process Data: shuffle data
+    X_data, y_data = shuffle(X_data, y_data)
 
-# Pre-process Data: Normalization
-# X_train = (X_train - 128) / 128
-# X_test = (X_test - 128)  / 128
+    # Pre-process Data: Normalization
+    # X_data = (X_data - 128) / 128
 
-# Pre-process Data: Grayscale
-X_train = np.sum(X_train / 3, axis=3, keepdims=True)
-X_test  = np.sum(X_test  / 3, axis=3, keepdims=True)
-X_valid = np.sum(X_valid / 3, axis=3, keepdims=True)
+    # Pre-process Data: Grayscale
+    X_data = np.sum(X_data / 3, axis=3, keepdims=True)
+    return X_data, y_data
+
+X_train, y_train = preprocess_data(X_train, y_train)
+X_valid, y_valid = preprocess_data(X_valid, y_valid)
+X_test, y_test = preprocess_data(X_test, y_test)
 
 # visualize_data(X_train, y_train, title="Pre-processed Sample", gray_scale=True)
 
@@ -81,7 +102,6 @@ import tensorflow as tf
 from tensorflow.contrib.layers import flatten
 EPOCHS = 20
 rate = 0.001
-keep_prob = 1
 BATCH_SIZE = 128
 
 # CNN
@@ -98,9 +118,6 @@ def LeNet(x):
     # Layer 1: Activation.
     conv1 = tf.nn.relu(conv1)
 
-    # Layer 1: Dropout
-    conv1 = tf.nn.dropout(conv1, keep_prob)
-
     # Layer 1: Pooling. Input = 28x28x6. Output = 14x14x6.
     conv1 = tf.nn.max_pool(conv1, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
 
@@ -111,9 +128,6 @@ def LeNet(x):
 
     # Layer 2: Activation.
     conv2 = tf.nn.relu(conv2)
-
-    # Layer 2: Dropout
-    conv2 = tf.nn.dropout(conv2, keep_prob)
 
     # Layer 2: Pooling. Input = 10x10x16. Output = 5x5x16
     conv2 = tf.nn.max_pool(conv2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
@@ -179,6 +193,30 @@ with tf.Session() as sess:
 # Test the Model
 with tf.Session() as sess:
     saver.restore(sess, tf.train.latest_checkpoint('.'))
-    
     test_accuracy = evaluate(X_test, y_test)
     print("Test Accuracy = {:.3f}".format(test_accuracy))
+
+# My Test Case
+import glob
+import cv2
+## Load my images
+my_labels = [25, 38, 34, 1, 12, 11, 3, 18]
+my_features = [str(id) + "x.png" for id in my_labels]
+
+for index, value in enumerate(my_features):
+    image = cv2.imread('./assets/' + value)
+    my_features[index] = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+
+my_features = np.asarray(my_features)
+my_labels = np.asarray(my_labels)
+print("{} tests queued".format(len(my_features)))
+
+# visualize_data(my_features, my_labels, title="My Test Sample", limit=8, isRand=False)
+
+## Preprocess Data
+my_features, my_labels = preprocess_data(my_features, my_labels)
+
+with tf.Session() as sess:
+    saver.restore(sess, tf.train.latest_checkpoint('.'))
+    my_accuracy = evaluate(my_features, my_labels)
+    print("Test Set Accuracy = {:.3f}".format(my_accuracy))

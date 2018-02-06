@@ -1,81 +1,80 @@
 Archive:  traffic-signs-data.zip
   inflating: test.p                  
   inflating: train.p                 
-  inflating: valid.p                 
-X_train: (34799, 32, 32, 3)
-y_train: (34799,)
-X_valid: (4410, 32, 32, 3)
-y_valid: (4410,)
-X_test: (12630, 32, 32, 3)
-y_test: (12630,)
-Sample input shape: (32, 32, 3)
-Sample output: 41
-Number of training examples = 34799
-Number of validation examples = 4410
+
+Number of training examples = 31367
+
+Number of validation examples = 7842
+
 Number of testing examples = 12630
+
 Shape of image data = (32, 32, 3)
+
 Number of classes = 43
+
 Training...
 
-EPOCH 1...
-Validation Accuracy = 0.279
+EPOCH 1/20:
+Validation Accuracy = 0.606
 
-EPOCH 2...
-Validation Accuracy = 0.691
+EPOCH 2/20:
+Validation Accuracy = 0.803
 
-EPOCH 3...
-Validation Accuracy = 0.778
+EPOCH 3/20:
+Validation Accuracy = 0.849
 
-EPOCH 4...
-Validation Accuracy = 0.820
+EPOCH 4/20:
+Validation Accuracy = 0.901
 
-EPOCH 5...
-Validation Accuracy = 0.832
+EPOCH 5/20:
+Validation Accuracy = 0.913
 
-EPOCH 6...
-Validation Accuracy = 0.844
+EPOCH 6/20:
+Validation Accuracy = 0.924
 
-EPOCH 7...
-Validation Accuracy = 0.861
+EPOCH 7/20:
+Validation Accuracy = 0.928
 
-EPOCH 8...
-Validation Accuracy = 0.866
+EPOCH 8/20:
+Validation Accuracy = 0.937
 
-EPOCH 9...
-Validation Accuracy = 0.870
+EPOCH 9/20:
+Validation Accuracy = 0.943
 
-EPOCH 10...
-Validation Accuracy = 0.873
+EPOCH 10/20:
+Validation Accuracy = 0.942
 
-EPOCH 11...
-Validation Accuracy = 0.876
+EPOCH 11/20:
+Validation Accuracy = 0.952
 
-EPOCH 12...
-Validation Accuracy = 0.897
+EPOCH 12/20:
+Validation Accuracy = 0.952
 
-EPOCH 13...
-Validation Accuracy = 0.887
+EPOCH 13/20:
+Validation Accuracy = 0.955
 
-EPOCH 14...
-Validation Accuracy = 0.893
+EPOCH 14/20:
+Validation Accuracy = 0.956
 
-EPOCH 15...
-Validation Accuracy = 0.900
+EPOCH 15/20:
+Validation Accuracy = 0.957
 
-EPOCH 16...
-Validation Accuracy = 0.902
+EPOCH 16/20:
+Validation Accuracy = 0.959
 
-EPOCH 17...
-Validation Accuracy = 0.889
+EPOCH 17/20:
+Validation Accuracy = 0.961
 
-EPOCH 18...
-Validation Accuracy = 0.893
+EPOCH 18/20:
+Validation Accuracy = 0.964
 
-EPOCH 19...
-Validation Accuracy = 0.902
+EPOCH 19/20:
+Validation Accuracy = 0.955
 
-EPOCH 20...
-Validation Accuracy = 0.895
+EPOCH 20/20:
+Validation Accuracy = 0.960
 
 Model saved
-Test Accuracy = 0.883
+Test Accuracy = 0.889
+8 tests queued
+Test Set Accuracy = 0.750
