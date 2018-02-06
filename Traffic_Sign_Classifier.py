@@ -95,12 +95,12 @@ X_train, y_train = preprocess_data(X_train, y_train)
 X_valid, y_valid = preprocess_data(X_valid, y_valid)
 X_test, y_test = preprocess_data(X_test, y_test)
 
-visualize_data(X_train, y_train, title="Pre-processed Sample", gray_scale=True)
+# visualize_data(X_train, y_train, title="Pre-processed Sample", gray_scale=True)
 
 # Setup Tensorflow
 import tensorflow as tf
 from tensorflow.contrib.layers import flatten
-EPOCHS = 20
+EPOCHS = 60
 rate = 0.001
 BATCH_SIZE = 128
 

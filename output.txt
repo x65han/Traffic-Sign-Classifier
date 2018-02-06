@@ -14,67 +14,187 @@ Number of classes = 43
 
 Training...
 
-EPOCH 1/20:
-Validation Accuracy = 0.606
+EPOCH 1/60:
+Validation Accuracy = 0.484
 
-EPOCH 2/20:
-Validation Accuracy = 0.803
+EPOCH 2/60:
+Validation Accuracy = 0.779
 
-EPOCH 3/20:
+EPOCH 3/60:
 Validation Accuracy = 0.849
 
-EPOCH 4/20:
-Validation Accuracy = 0.901
+EPOCH 4/60:
+Validation Accuracy = 0.881
 
-EPOCH 5/20:
-Validation Accuracy = 0.913
+EPOCH 5/60:
+Validation Accuracy = 0.904
 
-EPOCH 6/20:
-Validation Accuracy = 0.924
+EPOCH 6/60:
+Validation Accuracy = 0.917
 
-EPOCH 7/20:
-Validation Accuracy = 0.928
+EPOCH 7/60:
+Validation Accuracy = 0.920
 
-EPOCH 8/20:
-Validation Accuracy = 0.937
+EPOCH 8/60:
+Validation Accuracy = 0.932
 
-EPOCH 9/20:
-Validation Accuracy = 0.943
+EPOCH 9/60:
+Validation Accuracy = 0.936
 
-EPOCH 10/20:
+EPOCH 10/60:
 Validation Accuracy = 0.942
 
-EPOCH 11/20:
+EPOCH 11/60:
+Validation Accuracy = 0.948
+
+EPOCH 12/60:
+Validation Accuracy = 0.949
+
+EPOCH 13/60:
+Validation Accuracy = 0.937
+
+EPOCH 14/60:
+Validation Accuracy = 0.951
+
+EPOCH 15/60:
+Validation Accuracy = 0.948
+
+EPOCH 16/60:
 Validation Accuracy = 0.952
 
-EPOCH 12/20:
-Validation Accuracy = 0.952
-
-EPOCH 13/20:
+EPOCH 17/60:
 Validation Accuracy = 0.955
 
-EPOCH 14/20:
+EPOCH 18/60:
 Validation Accuracy = 0.956
 
-EPOCH 15/20:
+EPOCH 19/60:
 Validation Accuracy = 0.957
 
-EPOCH 16/20:
-Validation Accuracy = 0.959
+EPOCH 20/60:
+Validation Accuracy = 0.957
 
-EPOCH 17/20:
+EPOCH 21/60:
+Validation Accuracy = 0.957
+
+EPOCH 22/60:
 Validation Accuracy = 0.961
 
-EPOCH 18/20:
+EPOCH 23/60:
+Validation Accuracy = 0.962
+
+EPOCH 24/60:
+Validation Accuracy = 0.957
+
+EPOCH 25/60:
 Validation Accuracy = 0.964
 
-EPOCH 19/20:
-Validation Accuracy = 0.955
+EPOCH 26/60:
+Validation Accuracy = 0.965
 
-EPOCH 20/20:
-Validation Accuracy = 0.960
+EPOCH 27/60:
+Validation Accuracy = 0.959
+
+EPOCH 28/60:
+Validation Accuracy = 0.963
+
+EPOCH 29/60:
+Validation Accuracy = 0.950
+
+EPOCH 30/60:
+Validation Accuracy = 0.964
+
+EPOCH 31/60:
+Validation Accuracy = 0.966
+
+EPOCH 32/60:
+Validation Accuracy = 0.970
+
+EPOCH 33/60:
+Validation Accuracy = 0.967
+
+EPOCH 34/60:
+Validation Accuracy = 0.963
+
+EPOCH 35/60:
+Validation Accuracy = 0.963
+
+EPOCH 36/60:
+Validation Accuracy = 0.968
+
+EPOCH 37/60:
+Validation Accuracy = 0.968
+
+EPOCH 38/60:
+Validation Accuracy = 0.971
+
+EPOCH 39/60:
+Validation Accuracy = 0.973
+
+EPOCH 40/60:
+Validation Accuracy = 0.965
+
+EPOCH 41/60:
+Validation Accuracy = 0.970
+
+EPOCH 42/60:
+Validation Accuracy = 0.973
+
+EPOCH 43/60:
+Validation Accuracy = 0.970
+
+EPOCH 44/60:
+Validation Accuracy = 0.965
+
+EPOCH 45/60:
+Validation Accuracy = 0.967
+
+EPOCH 46/60:
+Validation Accuracy = 0.967
+
+EPOCH 47/60:
+Validation Accuracy = 0.969
+
+EPOCH 48/60:
+Validation Accuracy = 0.973
+
+EPOCH 49/60:
+Validation Accuracy = 0.971
+
+EPOCH 50/60:
+Validation Accuracy = 0.973
+
+EPOCH 51/60:
+Validation Accuracy = 0.976
+
+EPOCH 52/60:
+Validation Accuracy = 0.976
+
+EPOCH 53/60:
+Validation Accuracy = 0.976
+
+EPOCH 54/60:
+Validation Accuracy = 0.976
+
+EPOCH 55/60:
+Validation Accuracy = 0.953
+
+EPOCH 56/60:
+Validation Accuracy = 0.966
+
+EPOCH 57/60:
+Validation Accuracy = 0.971
+
+EPOCH 58/60:
+Validation Accuracy = 0.974
+
+EPOCH 59/60:
+Validation Accuracy = 0.969
+
+EPOCH 60/60:
+Validation Accuracy = 0.973
 
 Model saved
-Test Accuracy = 0.889
+Test Accuracy = 0.902
 8 tests queued
-Test Set Accuracy = 1.000
+Test Set Accuracy = 0.875
