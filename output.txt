@@ -77,4 +77,4 @@ Validation Accuracy = 0.960
 Model saved
 Test Accuracy = 0.889
 8 tests queued
-Test Set Accuracy = 0.750
+Test Set Accuracy = 1.000

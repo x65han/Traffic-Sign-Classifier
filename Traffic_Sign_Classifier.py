@@ -51,7 +51,7 @@ def labels_chart():
     plt.bar(bins[1:], hist)
     plt.show()
     
-labels_chart()
+# labels_chart()
 
 def visualize_data(X_data, y_data, title="No Title", gray_scale=False, limit=16, isRand=True):
     fig, axs = plt.subplots(3, 5, figsize=(15, 6))
@@ -95,7 +95,7 @@ X_train, y_train = preprocess_data(X_train, y_train)
 X_valid, y_valid = preprocess_data(X_valid, y_valid)
 X_test, y_test = preprocess_data(X_test, y_test)
 
-# visualize_data(X_train, y_train, title="Pre-processed Sample", gray_scale=True)
+visualize_data(X_train, y_train, title="Pre-processed Sample", gray_scale=True)
 
 # Setup Tensorflow
 import tensorflow as tf
