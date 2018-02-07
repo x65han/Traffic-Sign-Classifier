@@ -85,7 +85,7 @@ def preprocess_data(X_data, y_data):
     X_data, y_data = shuffle(X_data, y_data)
 
     # Pre-process Data: Normalization
-    # X_data = (X_data - 128) / 128
+    X_data = np.array(X_data / 255.0 - 0.5 )
 
     # Pre-process Data: Grayscale
     X_data = np.sum(X_data / 3, axis=3, keepdims=True)
