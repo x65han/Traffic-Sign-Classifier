@@ -111,5 +111,4 @@ The code for making predictions on my final model is located in the 19th cell of
 
 All signs have 90%+ confidence rating, except the `General caution` sign. My guess is that the `General caution` sign is too pixelated to make an accurate prediction.
 
-<div align="center"><img src="https://github.com/x65han/Traffic-Sign-Classifier/blob/master/miscellaneous/prob1.png?raw=true" width="80%" /></div>
-<div align="center"><img src="https://github.com/x65han/Traffic-Sign-Classifier/blob/master/miscellaneous/prob2.png?raw=true" width="80%" /></div>
+<div align="center"><img src="https://github.com/x65han/Traffic-Sign-Classifier/blob/master/miscellaneous/prob.png?raw=true" width="80%" /></div>
